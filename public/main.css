@@ -41,8 +41,8 @@ li a {
 }
 
 .banner {
-    background-image: url("Rectangle 2.png");
     background-size: 150px;
+    text-align: center;
     width: auto;
     height: auto;
 }
@@ -86,4 +86,10 @@ button{
 button:hover{
     background-color: blue;
     color: white;
+}
+
+footer{
+    padding: 30px;
+    color: gainsboro;
+    background-color: black;
 }
