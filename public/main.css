@@ -3,9 +3,9 @@ header {
     padding: 30px;
     color: white;
     width: auto;
-    margin-left: -15px;
-    margin-right: -15px;
-    margin-top: -15px;
+    margin-left: -8px;
+    margin-right: -8px;
+    margin-top: -8px;
 }
 
 ul {
@@ -29,6 +29,11 @@ li a {
     text-align: right;
     padding: 25px;
     text-decoration: none;
+    transition-duration: 0.4s
+}
+
+li a.hover{
+    color: gray;
 }
 
 .Star_image{
@@ -94,7 +99,7 @@ footer{
     padding: 30px;
     color: gainsboro;
     background-color: #222;
-    margin-left: -15px;
-    margin-right: -15px;
-    margin-bottom: -15px;
+    margin-left: -8px;
+    margin-right: -8px;
+    margin-bottom: -8px;
 }
