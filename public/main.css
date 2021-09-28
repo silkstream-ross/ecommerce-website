@@ -41,9 +41,8 @@ li a {
 }
 
 .banner {
-    background-size: 150px;
     text-align: center;
-    width: auto;
+    max-width: 100%;
     height: auto;
 }
 
