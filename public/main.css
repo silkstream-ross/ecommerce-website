@@ -1,1 +1,40 @@
+header {
+    background-color: #000000;
+    padding: 50px;
+    color: white;
+}
 
+ul {
+    list-style-type: none;
+    margin: 7px;
+    float: right;
+    overflow: hidden;
+    background-color: #000000;
+    display:inline-block;
+    font-family: Arial;
+    font-size: 24px;
+    padding-right: 100px;
+}
+
+li {
+    float: right;
+}
+
+li a {
+    color: white;
+    text-align: right;
+    padding: 25px;
+    text-decoration: none;
+}
+
+.Star_image{
+    float:left;
+    padding-left: 250px
+}
+.star_text{
+    float: left;
+}
+.Platinum{
+    padding-top: 45px;
+    float: bottom;
+}
