@@ -1,7 +1,8 @@
 header {
     background-color: #000000;
-    padding: 50px;
+    padding: 30px;
     color: white;
+    width: auto;
 }
 
 ul {
@@ -37,4 +38,52 @@ li a {
 .Platinum{
     padding-top: 45px;
     float: bottom;
+}
+
+.banner {
+    background-image: url("Rectangle 2.png");
+    background-size: 150px;
+    width: auto;
+    height: auto;
+}
+
+h1{
+    text-align: center;
+    font-family: Arial;
+}
+
+.flex-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-container > div{
+    margin: 10px;
+    padding: 20px;
+    font-size: 30px;
+}
+
+p{
+    text-align: center;
+    font-family: Arial;
+}
+
+button{
+    border: none;
+    color: black;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    border-radius: 12px;
+}
+
+button:hover{
+    background-color: blue;
+    color: white;
 }
