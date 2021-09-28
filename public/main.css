@@ -1,5 +1,5 @@
 header {
-    background-color: #000000;
+    background-color: #222;
     padding: 30px;
     color: white;
     width: auto;
@@ -10,7 +10,7 @@ ul {
     margin: 7px;
     float: right;
     overflow: hidden;
-    background-color: #000000;
+    background-color: #222;
     display:inline-block;
     font-family: Arial;
     font-size: 24px;
@@ -90,5 +90,5 @@ button:hover{
 footer{
     padding: 30px;
     color: gainsboro;
-    background-color: black;
+    background-color: #222;
 }
