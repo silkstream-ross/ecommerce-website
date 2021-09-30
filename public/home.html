@@ -25,9 +25,9 @@
             <li><a href="#">Category 2 </a></li>
             <li><a href="#">Category 1 </a></li>
         </ul>
-        
 
-        <ul id="menu">
+
+        <ul id="menu" style="z-index: 5">
             <a href="js/main.js"></a>
             <div class="menu_content">
                 <a href="#">Category 1</a>
@@ -47,7 +47,11 @@
 </header>
 
 <div class="container">
-<div class="banner"><img src="images/img.png" height="630" width="1200" alt="Banner"></div>
+<div class="banner" style="position:relative;">
+    <img src="images/banner1.png" alt="Banner" class="slide visible" style="z-index: 3">
+    <img src="images/banner2.png" alt="Banner" class="slide" style="z-index: 2">
+    <img src="images/banner3.png" alt="Banner" class="slide" style="z-index: 1">
+</div>
 
 <h1>Products</h1>
 

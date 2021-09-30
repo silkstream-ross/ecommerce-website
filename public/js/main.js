@@ -17,7 +17,11 @@ close_button.addEventListener("click", function (){
     }
 });
 
+setInterval(banner_change(3000))
 
+function banner_change(){
+    
+}
 
 
 

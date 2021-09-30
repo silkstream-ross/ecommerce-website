@@ -9,6 +9,9 @@ header {
     margin-left: -8px;
     margin-right: -8px;
     margin-top: -8px;
+    top: 0;
+    position: sticky;
+    z-index: 4;
 }
 img{
     max-width: 100%;
@@ -41,7 +44,6 @@ li {
 
  a {
     color: white;
-    text-align: right;
     padding: 25px;
     text-decoration: none;
     transition-duration: 0.4s
@@ -58,6 +60,7 @@ li {
     height: 100%;
     padding: 100px;
     opacity: 0.9;
+    overflow: auto;
 }
 
 .menu_button{
@@ -67,6 +70,8 @@ li {
 .menu_content{
     text-align: center;
     font-family: Calibri;
+    display: flex;
+    flex-direction: column;
 }
 .menu_content a{
     float: none;
@@ -83,8 +88,6 @@ li {
     #menu_button{
         display: none;
     }
-
-
 }
 
 
@@ -105,6 +108,13 @@ li a.hover{
     display: block;
 }
 
+.slide{
+    position: relative;
+}
+
+.visible{
+    position: absolute;
+}
 h1{
     text-align: center;
     font-family: Arial;
