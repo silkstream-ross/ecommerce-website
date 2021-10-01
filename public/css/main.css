@@ -72,6 +72,7 @@ li {
     font-family: Calibri;
     display: flex;
     flex-direction: column;
+
 }
 .menu_content a{
     float: none;
@@ -91,8 +92,8 @@ li {
 }
 
 
-li a.hover{
-    color: gray;
+li a:hover{
+    color: mediumpurple;
 }
 
 /*
@@ -159,7 +160,7 @@ button{
 }
 
 button:hover{
-    background-color: blue;
+    background-color: mediumpurple;
     color: white;
 }
 
