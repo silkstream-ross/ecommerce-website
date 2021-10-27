@@ -1,0 +1,35 @@
+version: "3"
+
+services:
+  ecommerce_website_webserver:
+    build:
+      context: ./
+      dockerfile: dev/docker/webserver/Dockerfile
+    container_name: 'ecommerce_website_webserver'
+    ports:
+      - "80:80"
+      - "443:443"
+      - "2020:2020"
+    links:
+      - ecommerce_website_database
+  ecommerce_website_database:
+    image: mysql:5.6
+    command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci --init-connect='SET NAMES UTF8;'
+    container_name: 'ecommerce_website_database'
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: dev_database
+      MYSQL_DATABASE: dev_database
+      MYSQL_USER: dev_database
+      MYSQL_PASSWORD: dev_database
+  ecommerce_website_phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: 'ecommerce_website_phpmyadmin'
+    links:
+      - ecommerce_website_database
+    environment:
+      PMA_HOST: ecommerce_website_database
+      PMA_PORT: 3306
+    ports:
+      - '8080:80'
