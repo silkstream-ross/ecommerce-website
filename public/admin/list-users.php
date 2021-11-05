@@ -9,6 +9,7 @@ $showUsers->bind_result($id, $username, $email, $firstName, $lastName, $password
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="/public/css/admin.css">
     <title>Admin</title>
 </head>
 
