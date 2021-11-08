@@ -1,0 +1,48 @@
+a{
+    color: black;
+    text-decoration: none;
+}
+
+a:hover{
+    color: dodgerblue;
+}
+
+.container{
+    background-color: lightcyan;
+    padding: 5em;
+}
+
+body{
+    margin-left: 10em;
+    margin-right: 10em;
+    font-family: Bahnschrift;
+    background-color: steelblue;
+}
+
+input[type=text]{
+    width: 75%;
+    padding: 0.7em;
+    border: 2px solid dodgerblue;
+}
+
+input[type=password]{
+    width: 75%;
+    padding: 0.7em;
+    border: 2px solid dodgerblue;
+}
+
+input[type=submit]{
+    width: 25%;
+    padding: 0.5em;
+    cursor: pointer;
+    border: solid dodgerblue 0.2em;
+    color: white;
+    background-color: dodgerblue;
+    font-family: Bahnschrift;
+}
+
+input[type=submit]:hover{
+    background-color: white;
+    color: #222222;
+}
+

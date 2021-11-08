@@ -1,0 +1,65 @@
+
+.container{
+    margin-left: 10em;
+    margin-right: 10em;
+    background-color: dodgerblue;
+    padding: 5em;
+}
+
+body{
+    font-family: Bahnschrift;
+    background-color: dodgerblue;
+}
+
+
+
+
+table{
+    text-align: center;
+    border: 2px solid black;
+    border-collapse: collapse;
+    table-layout: fixed;
+    width: 100%;
+}
+
+thead{
+    background-color: dodgerblue;
+    font-size: 120%;
+    color: white;
+}
+
+tbody{
+    background-color: white;
+}
+
+button{
+    color: white;
+    padding: 10px 32px;
+    font-size: 16px;
+    border-radius: 12px;
+    background-color: lightslategrey;
+    border: none;
+}
+
+a{
+    color: black;
+    text-decoration: none;
+}
+
+.editButton:hover{
+    background-color: orange;
+    color: white;
+}
+
+.deleteButton:hover{
+    background-color: red;
+    color: white;
+}
+
+.addButton:hover{
+    background-color: limegreen;
+    color:white;
+}
+
+
+
