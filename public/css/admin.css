@@ -1,17 +1,15 @@
 
 .container{
-    margin-left: 10em;
-    margin-right: 10em;
-    background-color: dodgerblue;
+    background-color: lightcyan;
     padding: 5em;
 }
 
 body{
+    margin-left: 10em;
+    margin-right: 10em;
     font-family: Bahnschrift;
-    background-color: dodgerblue;
+    background-color: steelblue;
 }
-
-
 
 
 table{
@@ -20,6 +18,7 @@ table{
     border-collapse: collapse;
     table-layout: fixed;
     width: 100%;
+    dispay: block;
 }
 
 thead{
