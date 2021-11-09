@@ -1,10 +1,6 @@
 <?php
-$mysqli = new mysqli("ecommerce_website_database", "dev_database", "dev_database", "dev_database");
-$showUsers = $mysqli->prepare("SELECT * FROM users");
-
-$showUsers->execute();
-$showUsers->bind_result($id, $username, $email, $firstName, $lastName, $password);
-$showUsers->fetch();
+require "link-database.php";
+$showUser = $mysqli->prepare("");
 
 ?>
 
@@ -16,6 +12,13 @@ $showUsers->fetch();
 <body>
 <h1>Edit user</h1>
 <h2><?=$username?></h2>
+
+
+
+
+
+
+<a href="list-users.php">Return</a>
 </body>
 
 

@@ -1,6 +1,5 @@
 <?php
-$mysqli = new mysqli("ecommerce_website_database", "dev_database", "dev_database", "dev_database");
-
+require "link-database.php";
 
 $addUser = $mysqli->prepare("INSERT INTO users(username, email, first_name, last_name, password) VALUES (?, ?, ?, ?, ?)");
 $addUser->bind_param("sssss", $username, $email, $firstName, $lastName, $password);

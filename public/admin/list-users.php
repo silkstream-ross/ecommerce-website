@@ -1,8 +1,12 @@
 <?php
-$mysqli = new mysqli("ecommerce_website_database", "dev_database", "dev_database", "dev_database");
+require "link-database.php";
+
 $showUsers = $mysqli->prepare("SELECT * FROM users");
 $showUsers->execute();
 $showUsers->bind_result($id, $username, $email, $firstName, $lastName, $password);
+$deleteRow = $mysqli->prepare("DELETE FROM users WHERE id=?");
+
+
 
 
 ?>
@@ -18,7 +22,7 @@ $showUsers->bind_result($id, $username, $email, $firstName, $lastName, $password
 <div class="container">
 <h1>Users</h1>
 <h2>All users</h2>
-<table>
+<table id="usersTable">
     <thead>
     <tr>
         <th>Id</th>
@@ -38,8 +42,8 @@ $showUsers->bind_result($id, $username, $email, $firstName, $lastName, $password
             <td><?=$email?></td>
             <td><?=$firstName?></td>
             <td><?=$lastName?></td>
-            <td class="editButton"><a href="edit-user.php" >Edit</a></td>
-            <td class="deleteButton"><a href="list-users.php" onclick="">Delete</a></td>
+            <td class="editButton"><a href="edit-user.php">Edit</a></td>
+            <td class="deleteButton"><input type="button" value="Delete" onclick="deleteRow(this)" /></td>
         </tr>
     <?php endwhile; ?>
         <tr>
@@ -49,6 +53,12 @@ $showUsers->bind_result($id, $username, $email, $firstName, $lastName, $password
 </table>
 </div>
 
+<script>
+    function deleteRow(btn) {
+        let row = btn.parentNode.parentNode;
+        row.parentNode.removeChild(row);
+    }
+</script>
 
 </body>
 </html>
