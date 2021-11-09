@@ -39,7 +39,7 @@ $showUsers->bind_result($id, $username, $email, $firstName, $lastName, $password
             <td><?=$firstName?></td>
             <td><?=$lastName?></td>
             <td class="editButton"><a href="edit-user.php" >Edit</a></td>
-            <td class="deleteButton"><a href="list-users.php" >Delete</a></td>
+            <td class="deleteButton"><a href="list-users.php" onclick="">Delete</a></td>
         </tr>
     <?php endwhile; ?>
         <tr>

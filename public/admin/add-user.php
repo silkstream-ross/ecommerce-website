@@ -3,20 +3,41 @@ $mysqli = new mysqli("ecommerce_website_database", "dev_database", "dev_database
 
 
 $addUser = $mysqli->prepare("INSERT INTO users(username, email, first_name, last_name, password) VALUES (?, ?, ?, ?, ?)");
-$types = "sssss";
-$addUser->bind_param($types, $username, $email, $firstName, $lastName, $password);
+$addUser->bind_param("sssss", $username, $email, $firstName, $lastName, $password);
+
+$error = "";
+
+
+function validateForm($data){
+    $invalid_data = "";
+    if($data === $invalid_data){
+        return FALSE;
+    }else{
+        return TRUE;
+    }
+}
 
 
 
 
 
 if($_SERVER["REQUEST_METHOD"] === "POST"){
-    $username = $_POST["username"];
-    $email = $_POST["email"];
-    $firstName = $_POST["firstname"];
-    $lastName = $_POST["lastname"];
-    $password = $_POST["password"];
-    $addUser->execute();
+    $test1 = validateForm($_POST["username"]);
+    $test2 = validateForm($_POST["email"]);
+    $test3 = validateForm($_POST["firstname"]);
+    $test4 = validateForm($_POST["lastname"]);
+    $test5 = validateForm($_POST["password"]);
+    if($test1 && $test2 && $test3 &&$test4 && $test5){
+        $username = $_POST["username"];
+        $email = $_POST["email"];
+        $firstName = $_POST["firstname"];
+        $lastName = $_POST["lastname"];
+        $password = $_POST["password"];
+        $addUser->execute();
+        $error = "";
+    }else{
+      $error = "*Error - Invalid data";
+    }
 }
 
 
@@ -54,6 +75,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
     <br>
     <br>
     <input type="submit" value="submit">
+    <p class="error_message"><?=$error?></p>
 </form>
 <br>
 <a href="list-users.php">Return</a>
