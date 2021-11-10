@@ -1,9 +1,7 @@
-CREATE TABLE `categories`
-(
-    `category_id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE `categories`(
+    `category_id` BIGINT UNSIGNED NOT NULL,
     `name`        VARCHAR(255) NOT NULL DEFAULT '',
     `description` TEXT         NOT NULL DEFAULT '',
-    PRIMARY KEY (`category_id`)
 ) ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_unicode_ci;
 
 INSERT INTO `categories` (`category_id`, `name`, `description`) VALUES
@@ -63,12 +61,16 @@ ALTER TABLE `customers`
 
 ALTER TABLE `orderitems`
     ADD PRIMARY KEY (`items_id`);
+    ADD KEY `order_id`(`order_id`),
+    ADD KEY `product_id` (`product_id`);
 
 ALTER TABLE `orders`
     ADD PRIMARY KEY (`order_id`);
+    ADD KEY `customer_id`(`customer_id`);
 
 ALTER TABLE `products`
     ADD PRIMARY KEY (`product_id`);
+    ADD KEY `category_id` (`category_id`);
 
 ALTER TABLE `users`
     ADD PRIMARY KEY (`users_id`);
@@ -88,7 +90,6 @@ ALTER TABLE `orders`
 
 ALTER TABLE `products`
     MODIFY `product_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-
 
 ALTER TABLE `users`
     MODIFY `users_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
