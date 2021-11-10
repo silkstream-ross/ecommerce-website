@@ -48,7 +48,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="/css/add-user.css">
+    <link rel="stylesheet" href="/css/form-styles.css">
     <title>Add user</title>
 </head>
 <body>

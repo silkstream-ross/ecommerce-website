@@ -42,7 +42,7 @@ $deleteRow = $mysqli->prepare("DELETE FROM users WHERE id=?");
             <td><?=$email?></td>
             <td><?=$firstName?></td>
             <td><?=$lastName?></td>
-            <td class="editButton"><a href="edit-user.php">Edit</a></td>
+            <td class="editButton"><a href="edit-user.php?id=<?=$id?>">Edit</a></td>
             <td class="deleteButton"><input type="button" value="Delete" onclick="deleteRow(this)" /></td>
         </tr>
     <?php endwhile; ?>
