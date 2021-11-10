@@ -70,6 +70,9 @@ ALTER TABLE `orders`
 ALTER TABLE `products`
     ADD PRIMARY KEY (`product_id`);
 
+ALTER TABLE `users`
+    ADD PRIMARY KEY (`users_id`);
+
 
 ALTER TABLE `categories`
     MODIFY `category_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
