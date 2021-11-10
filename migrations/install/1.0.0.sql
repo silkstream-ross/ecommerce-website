@@ -88,7 +88,7 @@ ALTER TABLE `orders`
 
 ALTER TABLE `products`
     MODIFY `product_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-COMMIT;
+
 
 ALTER TABLE `users`
     MODIFY `users_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
@@ -102,4 +102,4 @@ ALTER TABLE `orders`
 
 ALTER TABLE `products`
     ADD CONSTRAINT `products_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`category_id`) ON DELETE CASCADE;
-COMMIT;
+
