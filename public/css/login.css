@@ -1,0 +1,59 @@
+body{
+    background-color: #f2f2f2;
+    font-family: Bahnschrift;
+}
+
+.container{
+    margin: auto;
+    width: 20%;
+    text-align: center;
+}
+
+form{
+    padding: 2em;
+    background-color: white;
+    box-shadow: 5px 5px #e8e8e8;
+}
+
+input[type=text]{
+    height: 2em;
+    padding-left: 2.5em;
+    border-color: gainsboro;
+    border-style: solid;
+}
+
+input[type=password]{
+    height: 2em;
+    padding-left: 2.5em;
+    border-color: gainsboro;
+    border-style: solid;
+}
+
+input{
+    width: 60%;
+    padding: 0.5em;
+}
+
+input[type=submit]{
+    border: none;
+    background-color: dodgerblue;
+    height: 3.2em;
+    width: 65%;
+    font-family: Bahnschrift;
+    color: white;
+}
+
+input[type=submit]:hover{
+    cursor: pointer;
+}
+
+.icon {
+    margin-top: 0.3em;
+    padding: 0.5em;
+    color: royalblue;
+    width: 1em;
+    text-align: left;
+    position: absolute;
+}
+
+

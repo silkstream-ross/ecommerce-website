@@ -43,7 +43,7 @@ $deleteRow = $mysqli->prepare("DELETE FROM users WHERE id=?");
             <td><?=$firstName?></td>
             <td><?=$lastName?></td>
             <td class="editButton"><a href="edit-user.php?id=<?=$id?>">Edit</a></td>
-            <td class="deleteButton"><input type="button" value="Delete" onclick="deleteRow(this)" /></td>
+            <td class="deleteButton"><input type="button" value="Delete" onclick="deleteRow(this,<?=$id?>)" /></td>
         </tr>
     <?php endwhile; ?>
         <tr>
@@ -51,14 +51,27 @@ $deleteRow = $mysqli->prepare("DELETE FROM users WHERE id=?");
         </tr>
     </tbody>
 </table>
+    <a href="login.php">Log Out</a>
 </div>
 
 <script>
-    function deleteRow(btn) {
-        let row = btn.parentNode.parentNode;
-        row.parentNode.removeChild(row);
+    function deleteRow(btn, id) {
+        let request = new XMLHttpRequest();
+        request.onreadystatechange = function(){
+            if (request.readyState === XMLHttpRequest.DONE){
+                if(request.status === 200){
+                    let row = btn.parentNode.parentNode;
+                    row.parentNode.removeChild(row);
+                }else{
+                    alert("Something went wrong.");
+                }
+            }
+        };
+        request.open("GET", "ajax-delete-user.php?id="+id, true);
+        request.send();
     }
 </script>
+
 
 </body>
 </html>

@@ -1,7 +1,7 @@
 CREATE TABLE `categories`(
     `category_id` BIGINT UNSIGNED NOT NULL,
     `name`        VARCHAR(255) NOT NULL DEFAULT '',
-    `description` TEXT         NOT NULL DEFAULT '',
+    `description` TEXT         NOT NULL DEFAULT ''
 ) ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_unicode_ci;
 
 INSERT INTO `categories` (`category_id`, `name`, `description`) VALUES
@@ -60,16 +60,16 @@ ALTER TABLE `customers`
     ADD PRIMARY KEY (`customer_id`);
 
 ALTER TABLE `orderitems`
-    ADD PRIMARY KEY (`items_id`);
+    ADD PRIMARY KEY (`items_id`),
     ADD KEY `order_id`(`order_id`),
     ADD KEY `product_id` (`product_id`);
 
 ALTER TABLE `orders`
-    ADD PRIMARY KEY (`order_id`);
+    ADD PRIMARY KEY (`order_id`),
     ADD KEY `customer_id`(`customer_id`);
 
 ALTER TABLE `products`
-    ADD PRIMARY KEY (`product_id`);
+    ADD PRIMARY KEY (`product_id`),
     ADD KEY `category_id` (`category_id`);
 
 ALTER TABLE `users`
