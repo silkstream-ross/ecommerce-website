@@ -5,7 +5,7 @@ $select = $mysqli->prepare("SELECT * FROM users WHERE users_id=?");
 $select->bind_param("i", $_GET['id']);
 
 $update = $mysqli->prepare("UPDATE users SET username = ?, email = ?, first_name = ?, last_name = ?, password = ? WHERE users_id=?");
-$update->bind_param("sssss", $newUsername, $newEmail, $newFirstname, $newLastname, $newPassword);
+$update->bind_param("sssssi", $newUsername, $newEmail, $newFirstname, $newLastname, $newPassword, $id);
 
 
 $select->execute();

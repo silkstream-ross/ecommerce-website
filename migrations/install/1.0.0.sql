@@ -44,6 +44,16 @@ CREATE TABLE `products` (
     `price` decimal(10,2) NOT NULL DEFAULT '0.00'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+CREATE TABLE `users` (
+    `users_id` bigint(20) UNSIGNED NOT NULL,
+    `username` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+    `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+    `first_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+    `last_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+    `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+
 
 ALTER TABLE `categories`
     ADD PRIMARY KEY (`category_id`);
@@ -76,6 +86,9 @@ ALTER TABLE `orders`
 ALTER TABLE `products`
     MODIFY `product_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 COMMIT;
+
+ALTER TABLE `users`
+    MODIFY `users_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `orderitems`
     ADD CONSTRAINT `orderitems_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`) ON DELETE CASCADE,
