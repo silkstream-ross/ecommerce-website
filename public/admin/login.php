@@ -1,6 +1,36 @@
 <?php
 require "link-database.php";
-$checkData = $mysqli->prepare("SELECT * FROM users WHERE username=?, password=?");
+
+
+$validation_message = "";
+
+function validateLogin($username, $password){
+    $mysqli = new mysqli("ecommerce_website_database", "dev_database", "dev_database", "dev_database");
+    $filterUsername = filter_var($username, FILTER_SANITIZE_STRING);
+    $filterPassword = filter_var($password, FILTER_SANITIZE_STRING);
+    $checkData = $mysqli->prepare("SELECT username, password FROM users WHERE username=? and password=?");
+    $checkData->bind_param("ss",$filterUsername, $filterPassword);
+    $checkData->execute();
+    $checkData->bind_result($dbUsername, $dbPassword);
+    $checkData->fetch();
+    if($filterUsername === $dbUsername && $filterPassword === $dbPassword){
+        return true;
+    }else{
+        return false;
+    }
+
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST"){
+    $testLogin = validateLogin($_POST["username"], $_POST["password"]);
+    if($testLogin === true){
+        $validation_message =  "Login successful";
+        header("Location: list-users.php");
+        exit();
+    }else{
+        $validation_message = "Wrong username or password";
+    }
+}
 
 
 ?>
@@ -14,7 +44,7 @@ $checkData = $mysqli->prepare("SELECT * FROM users WHERE username=?, password=?"
 <body>
 <div class="container">
 <h1>Ecommerce Website</h1>
-<form method="post" action="list-users.php">
+<form method="post">
     <i class="fa fa-user icon"></i>
     <input id="usernameField" type="text" name="username" placeholder="Username" required>
     <br>
@@ -25,6 +55,7 @@ $checkData = $mysqli->prepare("SELECT * FROM users WHERE username=?, password=?"
     </div>
     <br>
     <input type="submit" value="Sign In">
+    <p><?=$validation_message?></p>
 </form>
 </div>
 </body>
