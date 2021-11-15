@@ -1,38 +1,13 @@
 <?php
-session_start();
-require "link-database.php";
+require "app.php";
+require "session.php";
+include "header.php";
 
-if(!isset($_SESSION['user'])):
-    header('Location: /admin/login.php');
-    exit();
-endif;
 
 $addUser = $mysqli->prepare("INSERT INTO users(username, email, first_name, last_name, password) VALUES (?, ?, ?, ?, ?)");
 $addUser->bind_param("sssss", $username, $email, $firstName, $lastName, $password);
 
 $error = "";
-
-function validateEmail($data){
-    if(filter_var($data, FILTER_VALIDATE_EMAIL)){
-        return TRUE;
-    }else{
-        return FALSE;
-    }
-
-}
-
-
-function validateForm($data){
-    $invalid_data = "";
-    if($data === $invalid_data){
-        return FALSE;
-    }else{
-        return TRUE;
-    }
-}
-
-
-
 
 
 if($_SERVER["REQUEST_METHOD"] === "POST"){
@@ -91,10 +66,6 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
     <input type="submit" value="submit">
     <p class="error_message"><?=$error?></p>
 </form>
-<br>
-<a href="list-users.php">Return</a>
-
-
 </div>
 
 

@@ -1,11 +1,8 @@
 <?php
-session_start();
-require "link-database.php";
+require "app.php";
+require "session.php";
+include "header.php";
 
-if(!isset($_SESSION['user'])):
-    header('Location: /admin/login.php');
-    exit();
-endif;
 
 
 $showUsers = $mysqli->prepare("SELECT * FROM users");
@@ -27,9 +24,6 @@ $deleteRow = $mysqli->prepare("DELETE FROM users WHERE id=?");
 
 <body>
 <div class="container">
-    <?php if(isset($_SESSION['user'])): ?>
-<p>You're logged in as: <?=$_SESSION['user']['username']?></p>
-    <?php endif ?>
     <h1>Users</h1>
 <h2>All users</h2>
 <table id="usersTable">
@@ -61,8 +55,6 @@ $deleteRow = $mysqli->prepare("DELETE FROM users WHERE id=?");
         </tr>
     </tbody>
 </table>
-    <br>
-    <a href="/admin/logout.php" class="logOut">Log Out</a>
 </div>
 
 <script>

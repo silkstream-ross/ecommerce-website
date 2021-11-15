@@ -1,25 +1,13 @@
 <?php
-session_start();
-require "link-database.php";
-
-if(!isset($_SESSION['user'])):
-    header('Location: /admin/login.php');
-    exit();
-endif;
+require "app.php";
+require "session.php";
+include "header.php";
 
 $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 
 
 $error = "";
 
-function validateForm($data){
-    $invalid_data = "";
-    if($data === $invalid_data){
-        return FALSE;
-    }else{
-        return TRUE;
-    }
-}
 
 
 if ($_SERVER["REQUEST_METHOD"] === "POST"){
@@ -83,8 +71,6 @@ $select->fetch();
     <input type="submit" value="submit">
     <p><?=$error?></p>
 </form>
-<br>
-<a href="list-users.php">Return</a>
 </div>
 </body>
 

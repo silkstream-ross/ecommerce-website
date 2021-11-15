@@ -1,0 +1,30 @@
+header{
+    background-color: dodgerblue;
+    padding: 1.5em;
+}
+
+
+.userMessage{
+    float: right;
+    display: inline;
+    color: white;
+}
+
+.admin{
+    color: white;
+}
+
+h1{
+    display: inline;
+}
+
+.link{
+    margin: 2em;
+    padding: 1.5em 1.5em 1.5em 1.5em;
+    color: white;
+}
+
+.link:hover{
+    color: #b8bcc2;
+
+}
