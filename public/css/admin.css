@@ -1,6 +1,7 @@
 
 .container{
-    background-color: lightcyan;
+    background-color: white;
+    box-shadow: 5px 5px #e8e8e8;
     padding: 5em;
 }
 
@@ -8,7 +9,7 @@ body{
     margin-left: 10em;
     margin-right: 10em;
     font-family: Bahnschrift;
-    background-color: steelblue;
+    background-color: #f2f2f2;
 }
 
 
@@ -64,5 +65,16 @@ a{
     color:white;
 }
 
+.logOut{
+    color:white;
+}
 
+.logOut:link{
+    background-color: dodgerblue;
+    padding: 0.5em 1em;
+}
+
+.logOut:link:hover{
+    background-color: blue;
+}
 

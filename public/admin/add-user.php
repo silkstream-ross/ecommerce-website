@@ -1,10 +1,25 @@
 <?php
+session_start();
 require "link-database.php";
+
+if(!isset($_SESSION['user'])):
+    header('Location: /admin/login.php');
+    exit();
+endif;
 
 $addUser = $mysqli->prepare("INSERT INTO users(username, email, first_name, last_name, password) VALUES (?, ?, ?, ?, ?)");
 $addUser->bind_param("sssss", $username, $email, $firstName, $lastName, $password);
 
 $error = "";
+
+function validateEmail($data){
+    if(filter_var($data, FILTER_VALIDATE_EMAIL)){
+        return TRUE;
+    }else{
+        return FALSE;
+    }
+
+}
 
 
 function validateForm($data){
@@ -22,7 +37,7 @@ function validateForm($data){
 
 if($_SERVER["REQUEST_METHOD"] === "POST"){
     $test1 = validateForm($_POST["username"]);
-    $test2 = validateForm($_POST["email"]);
+    $test2 = validateEmail($_POST["email"]);
     $test3 = validateForm($_POST["firstname"]);
     $test4 = validateForm($_POST["lastname"]);
     $test5 = validateForm($_POST["password"]);

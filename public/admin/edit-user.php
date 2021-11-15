@@ -1,5 +1,11 @@
 <?php
+session_start();
 require "link-database.php";
+
+if(!isset($_SESSION['user'])):
+    header('Location: /admin/login.php');
+    exit();
+endif;
 
 $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 
