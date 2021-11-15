@@ -12,7 +12,7 @@ $error = "";
 
 if ($_SERVER["REQUEST_METHOD"] === "POST"){
     $test1 = validateForm($_POST["username"]);
-    $test2 = validateForm($_POST["email"]);
+    $test2 = validateEmail($_POST["email"]);
     $test3 = validateForm($_POST["firstname"]);
     $test4 = validateForm($_POST["lastname"]);
     $test5 = validateForm($_POST["password"]);
