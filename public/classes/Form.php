@@ -26,27 +26,23 @@ class Form{
         return '';
     }
 
-    public function validateText($text){
-        if($this->values[$text] === ''){
-            $this->errors[$text] = 'Error - field left blank';
+    public function validateText($field){
+        if($this->values[$field] === ''){
+            $this->errors[$field] = 'Error - field left blank';
         }else{
-            $this->errors[$text] = '';
+            $this->errors[$field] = '';
         }
     }
 
-    public function validateEmail($email){
-        if($this->values[$email] === ''){
-            $this->errors[$email] = 'Error - field left blank';
-        }else if(!filter_var($this->values[$email], FILTER_VALIDATE_EMAIL)){
-            $this->errors[$email] = 'Error - invalid email';
+    public function validateEmail($field){
+        if($this->values[$field] === ''){
+            $this->errors[$field] = 'Error - field left blank';
+        }else if(!filter_var($this->values[$field], FILTER_VALIDATE_EMAIL)){
+            $this->errors[$field] = 'Error - invalid email';
         }
     }
 
     public function hasErrors(){
-        if(count($this->errors)>0){
-            return true;
-        }else{
-            return false;
-        }
+        return empty($this->errors);
     }
 }
