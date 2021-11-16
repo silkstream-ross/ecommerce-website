@@ -42,7 +42,7 @@ input[type=button]{
 }
 
 input[type=button]:hover{
-    background-color: red;
+    color: red;
     cursor: pointer;
 }
 
@@ -53,28 +53,14 @@ a{
 
 .editButton:hover{
     background-color: orange;
-    color: white;
 }
 
-.deleteButton:hover{
-    background-color: red;
-}
 
 .addButton:hover{
     background-color: limegreen;
     color:white;
 }
 
-.logOut{
-    color:white;
-}
 
-.logOut:link{
-    background-color: dodgerblue;
-    padding: 0.5em 1em;
-}
 
-.logOut:link:hover{
-    background-color: blue;
-}
 

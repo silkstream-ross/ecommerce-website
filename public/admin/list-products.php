@@ -53,7 +53,7 @@ $deleteRow = $mysqli->prepare("DELETE FROM products WHERE id=?");
         </tr>
     <?php endwhile; ?>
         <tr>
-            <td colspan="8" class="addButton"><a href="/admin/add-product.php">+ Add User</a></td>
+            <td colspan="8" class="addButton"><a href="/admin/add-product.php">+ Add Product</a></td>
         </tr>
     </tbody>
 </table>
