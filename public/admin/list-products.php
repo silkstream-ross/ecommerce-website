@@ -1,5 +1,5 @@
 <?php
-require "app.php";
+require "../app.php";
 require "session.php";
 include "header.php";
 
@@ -7,7 +7,7 @@ include "header.php";
 
 $showProducts = $mysqli->prepare("SELECT * FROM products");
 $showProducts->execute();
-$showProducts->bind_result($id, $category, $name, $description, $sku, $price);
+$showProducts->bind_result($id, $category, $name, $description, $sku, $price, $img);
 $deleteRow = $mysqli->prepare("DELETE FROM products WHERE id=?");
 
 

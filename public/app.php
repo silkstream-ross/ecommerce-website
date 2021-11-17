@@ -1,6 +1,8 @@
 <?php
 session_start();
 error_reporting(E_ALL);
+define('ABSOLUTE_DIR',__DIR__);
+//mysqli_report(MYSQLI_REPORT_ALL);
 $mysqli = new mysqli("ecommerce_website_database", "dev_database", "dev_database", "dev_database");
 
 function validateForm($data){

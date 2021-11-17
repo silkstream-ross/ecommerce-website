@@ -1,6 +1,6 @@
 <?php
 
-require "app.php";
+require "../app.php";
 require "session.php";
 include "header.php";
 

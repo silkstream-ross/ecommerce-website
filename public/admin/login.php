@@ -1,5 +1,5 @@
 <?php
-require "app.php";
+require "../app.php";
 
 
 $validation_message = "";

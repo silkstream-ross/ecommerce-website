@@ -1,4 +1,9 @@
 <?php
+require "app.php";
+
+$showProducts = $mysqli->prepare("SELECT name, description, price, img FROM products");
+$showProducts->execute();
+$showProducts->bind_result($name, $desc, $price, $img);
 
 ?>
 
@@ -63,20 +68,15 @@
 
 
 <div class="flex-container">
-    <div><img src="images/img_1.png" alt="product"><p>Item<br>£5.00<br><button type="button">Add To Basket</button></p></div>
-    <div><img src="images/img_1.png" alt="product"><p>Item<br>£5.00<br><button type="button">Add To Basket</button></p></div>
-    <div><img src="images/img_1.png" alt="product"><p>Item<br>£5.00<br><button type="button">Add To Basket</button></p></div>
-    <div><img src="images/img_1.png" alt="product"><p>Item<br>£5.00<br><button type="button">Add To Basket</button></p></div>
-    <div><img src="images/img_1.png" alt="product"><p>Item<br>£5.00<br><button type="button">Add To Basket</button></p></div>
-    <div><img src="images/img_1.png" alt="product"><p>Item<br>£5.00<br><button type="button">Add To Basket</button></p></div>
-    <div><img src="images/img_1.png" alt="product"><p>Item<br>£5.00<br><button type="button">Add To Basket</button></p></div>
-    <div><img src="images/img_1.png" alt="product"><p>Item<br>£5.00<br><button type="button">Add To Basket</button></p></div>
-    <div><img src="images/img_1.png" alt="product"><p>Item<br>£5.00<br><button type="button">Add To Basket</button></p></div>
+    <?php while($showProducts->fetch()): ?>
+    <div><img src="/uploads/products/<?=$img?>" alt="product" height="422" width="339"><p><?=$name?><br>£<?=$price?><br><button type="button">Add To Basket</button></p></div>
+    <?php endwhile; ?>
 </div>
 </div>
 <footer>
     <p>Copyright© Star Platinum</p>
 </footer>
+
 <script src="js/main.js">
 </script>
 </body>
