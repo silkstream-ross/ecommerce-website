@@ -1,0 +1,10 @@
+{
+  "scripts": {
+    "css": "node ./dev/npm/build-css.js"
+  },
+  "theme_src_dir": "src",
+  "theme_dist_dir": "public",
+  "dependencies": {
+    "sass": "^1.43.4"
+  }
+}
