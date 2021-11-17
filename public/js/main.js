@@ -77,7 +77,7 @@ function stop_autoplay(){
 
 start_autoplay();
 
-
+$('.Star_image').css('display', 'none').fadeIn();
 
 
 
