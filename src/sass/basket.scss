@@ -1,6 +1,7 @@
 table {
   font-family: Arial;
-  margin: 1.2em;
+  margin-left: auto;
+  margin-right: auto;
   border-collapse: collapse;
   thead{
     color: white;
@@ -11,6 +12,9 @@ table {
   }
 }
 
+a{
+  color: black;
+}
 
 td{
   padding: 1.2em;

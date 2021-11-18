@@ -51,8 +51,14 @@ $showBasket->bind_result($name, $desc, $price, $img);
     </tfoot>
 </table>
 
+<h1><a href="#">Checkout</a></h1>
 
-<script src="js/main.js"></script>
+<footer>
+    <p>Copyright© Star Platinum</p>
+</footer>
+
+
+
 
 
 
@@ -76,5 +82,5 @@ $showBasket->bind_result($name, $desc, $price, $img);
 
 
 </body>
-
+<script src="js/main.js"></script>
 </html>
