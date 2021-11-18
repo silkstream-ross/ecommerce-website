@@ -1,0 +1,19 @@
+table {
+  font-family: Arial;
+  margin: 1.2em;
+  border-collapse: collapse;
+  thead{
+    color: white;
+    background-color: mediumpurple;
+    th{
+      padding: 1.1em;
+    }
+  }
+}
+
+
+td{
+  padding: 1.2em;
+  border-bottom: solid #222222 5px;
+}
+

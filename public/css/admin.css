@@ -1,4 +1,9 @@
 
+*{
+    box-sizing: border-box;
+}
+
+
 .container{
     background-color: white;
     box-shadow: 5px 5px #e8e8e8;
