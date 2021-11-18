@@ -1,8 +1,9 @@
-CREATE TABLE `categories`(
-    `category_id` BIGINT UNSIGNED NOT NULL,
-    `name`        VARCHAR(255) NOT NULL DEFAULT '',
-    `description` TEXT         NOT NULL DEFAULT ''
-) ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_unicode_ci;
+
+CREATE TABLE `categories` (
+    `category_id` bigint(20) UNSIGNED NOT NULL,
+    `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+    `description` text COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 INSERT INTO `categories` (`category_id`, `name`, `description`) VALUES
     (1, 'Playstation 4 ', 'Games for the Playstation 4/Playstation 4 Pro.'),
@@ -39,8 +40,13 @@ CREATE TABLE `products` (
     `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
     `description` text COLLATE utf8_unicode_ci NOT NULL,
     `sku` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-    `price` decimal(10,2) NOT NULL DEFAULT '0.00'
+    `price` decimal(10,2) NOT NULL DEFAULT '0.00',
+    `img` varchar(255) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+INSERT INTO `products` (`product_id`, `category_id`, `name`, `description`, `sku`, `price`, `img`) VALUES
+    (1, 1, 'God Of War (2018)', '4th God of War game', '11FDFS445GFDG7', '39.99', 'God_of_War_4_box.jpg'),
+    (2, 2, 'Halo 3', 'Third installment in the bungie trilogy.', 'QWE1EWWFSDF44', '15.00', 'Halo_3_box.png');
 
 CREATE TABLE `users` (
     `users_id` bigint(20) UNSIGNED NOT NULL,
@@ -51,6 +57,8 @@ CREATE TABLE `users` (
     `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT ''
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+INSERT INTO `users` (`users_id`, `username`, `email`, `first_name`, `last_name`, `password`) VALUES
+    (1, 'RossW', 'ross@silkstream.net', 'Ross', 'Wallings', '1234');
 
 
 ALTER TABLE `categories`
@@ -61,12 +69,12 @@ ALTER TABLE `customers`
 
 ALTER TABLE `orderitems`
     ADD PRIMARY KEY (`items_id`),
-    ADD KEY `order_id`(`order_id`),
+    ADD KEY `order_id` (`order_id`),
     ADD KEY `product_id` (`product_id`);
 
 ALTER TABLE `orders`
     ADD PRIMARY KEY (`order_id`),
-    ADD KEY `customer_id`(`customer_id`);
+    ADD KEY `customer_id` (`customer_id`);
 
 ALTER TABLE `products`
     ADD PRIMARY KEY (`product_id`),
@@ -89,10 +97,11 @@ ALTER TABLE `orders`
     MODIFY `order_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `products`
-    MODIFY `product_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+    MODIFY `product_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 ALTER TABLE `users`
-    MODIFY `users_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+    MODIFY `users_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 
 ALTER TABLE `orderitems`
     ADD CONSTRAINT `orderitems_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`) ON DELETE CASCADE,
