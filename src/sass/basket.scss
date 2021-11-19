@@ -8,16 +8,22 @@ table {
     background-color: mediumpurple;
     th{
       padding: 1.1em;
+      font-size: x-large;
     }
+  }
+  td{
+    padding: 1.2em;
+    border-bottom: solid #222222 5px;
+    font-size: large;
   }
 }
 
 a{
-  color: black;
+  background-color: #222222;
 }
 
-td{
-  padding: 1.2em;
-  border-bottom: solid #222222 5px;
+a:hover{
+  color:mediumpurple;
 }
+
 

@@ -80,6 +80,7 @@ li {
     color: black;
     text-decoration: none;
     padding: 5px;
+    background-color: mediumpurple;
 }
 
 .menu_content a:hover{
