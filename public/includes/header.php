@@ -18,11 +18,11 @@
     </div>
 
         <ul id="menu" style="z-index: 4">
-            <script href="js/main.js"></script>
+            <script src="public/js/main.js"></script>
             <div class="menu_content">
-                <a href="/home.php">Category 1</a>
+                <a href="home.php">Category 1</a>
                 <a href="#">Category 2</a>
-                <a href="#">Contact Us</a>
+                <a href="contact-form.php">Contact Us</a>
                 <a href="#"><img src="images/Menu_profile.svg" alt="Profile"></a>
                 <a href="#"><img src="images/Menu_search.svg" alt="Search"></a>
                 <a href="basket.php"><img src="images/Menu_basket.svg" alt="Basket"></a>

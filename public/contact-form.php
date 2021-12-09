@@ -1,6 +1,7 @@
 <?php
 include 'classes/Form.php';
 
+
 $form_completed = false;
 
 $form = new Form();
@@ -18,15 +19,22 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
 }
 ?>
+<!DOCTYPE html>
 <html>
 <head>
     <title>Contact Form</title>
+    <link rel="stylesheet" href="src/sass/contact-form.scss">
+    <?php include 'includes/head-data.php'; ?>
 </head>
 <body>
-<?php if ($form_completed): ?>
-    <div>Thank you for submitting the form!</div>
-    <?php else: ?>
-    <form method="post">
+
+<?php include 'includes/header.php'; ?>
+
+<div id="contact-form-area">
+<?php //if ($form_completed): ?>
+<!--    <div>Thank you for submitting the form!</div>-->
+<!--    --><?php //else: ?>
+    <form class="contact-form" method="post">
         <div>
             <label>Name</label>
             <input type="text" name="name" value="<?= $form->displayValue('name') ?>">
@@ -43,12 +51,25 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             <?= $form->displayError('subject') ?>
         </div>
         <div>
-            <label>Subject</label>
+            <label>Message</label>
             <textarea type="text" name="message"><?= $form->displayValue('message') ?></textarea>
             <?= $form->displayError('message') ?>
         </div>
-        <button type="submit">Submit</button>
     </form>
-    <?php endif ?>
+<!--    --><?php //endif ?>
+    <button type="button" onclick="loadMessage()">Submit</button>
+</div>
+<script>
+    function loadMessage(){
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function(){
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("contact-form-area").innerHTML = this.responseText;
+            }
+        };
+        xhttp.open("GET", "ajax-form-complete.php", true);
+        xhttp.send();
+    };
+</script>
 </body>
 </html>
