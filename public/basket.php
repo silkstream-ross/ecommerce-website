@@ -1,17 +1,17 @@
 <?php
 require 'app.php';
 
-$_SESSION['id'] = 3;
-
-$showBasket = $mysqli->prepare("SELECT name, description, price, img FROM products");
+$subtotal = 0;
+$showBasket = $mysqli->prepare("SELECT name, description, price, img FROM products WHERE product_id=?");
+//$showBasket = $mysqli->prepare("SELECT name, description, price, img FROM products WHERE product_id=?");
 //$showBasket->bind_param("i", $_SESSION['id']);
-$showBasket->execute();
-$showBasket->bind_result($name, $desc, $price, $img);
-
+//$showBasket->execute();
+//$showBasket->bind_result($name, $desc, $price, $img);
+//
 
 //$getPrices = $mysqli->prepare("SELECT price FROM products WHERE price=?");
 //$getPrices->bind_param();
-
+//var_dump($_SESSION['basket']);
 ?>
 
 <!DOCTYPE html>
@@ -32,21 +32,29 @@ $showBasket->bind_result($name, $desc, $price, $img);
             <th>Price</th>
         </tr>
     </thead>
-    <tbody>
-    <?php while($showBasket->fetch()): ?>
+    <tbody id="basket-body">
+    <?php
+    foreach($_SESSION['basket'] as $product){
+        $showBasket->bind_param("i", $product);
+        $showBasket->execute();
+        $showBasket->bind_result($name, $desc, $price, $img);
+
+        $showBasket->fetch(); ?>
         <tr>
             <td><img src="/uploads/products/<?=$img?>" width="339" height="425" alt="game-art"></td>
             <td><?=$name?></td>
             <td><?=$desc?></td>
             <td>£<?=$price?></td>
         </tr>
-    <?php endwhile; ?>
+    <?php
+     $subtotal += $price;
+    } ?>
     </tbody>
     <tfoot>
     <tr>
         <td>Subtotal:</td>
         <td colspan="2"></td>
-        <td></td>
+        <td>£<?= $subtotal ?></td>
     </tr>
     </tfoot>
 </table>

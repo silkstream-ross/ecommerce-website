@@ -1,6 +1,8 @@
 <?php
 require "app.php";
 
+$_SESSION['basket'];
+
 $showProducts = $mysqli->prepare("SELECT product_id, name, description, price, img FROM products");
 $showProducts->execute();
 $showProducts->bind_result($id, $name, $desc, $price, $img);
@@ -38,13 +40,38 @@ $showProducts->bind_result($id, $name, $desc, $price, $img);
 
 <div class="flex-container">
     <?php while($showProducts->fetch()): ?>
-    <div><img src="/uploads/products/<?=$img?>" alt="product" height="422" width="339"><p><?=$name?><br>£<?=$price?><br><button type="button">Add To Basket</button></p></div>
-    <?php endwhile; ?>
+        <div><img src="/uploads/products/<?=$img?>" alt="product" height="422" width="339"><p><?=$name?><br>£<?=$price?><br></p></div>
+        <form method="post">
+            <input type="hidden" name="product_id" value="<?= $id ?>">
+            <button type="submit" value="Add To Basket">Add To Basket</button>
+        </form>
+    <?php endwhile;
+    if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+        array_push($_SESSION['basket'], $_POST['product_id']);
+    }
+    ?>
 </div>
 </div>
+
+
+<div id="content-block"></div>
 <footer>
     <p>Copyright© Star Platinum</p>
 </footer>
+
+<script>
+    function AddToBasket(){
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function (){
+            if(this.readyState == 4 && this.status == 200){
+                document.getElementById("basket-body").innerHTML = this.responseText;
+            }
+        };
+        xhttp.open("GET", "ajax-add-to-basket.php", true);
+        xhttp.send();
+    };
+</script>
+
 <script src="js/jquery-3.6.0.min.js"></script>
 <script src="js/main.js"></script>
 </body>
