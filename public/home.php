@@ -7,7 +7,6 @@ $showProducts->execute();
 $showProducts->bind_result($id, $name, $desc, $price, $img);
 
 
-
 ?>
 
 <!DOCTYPE html>
@@ -38,15 +37,19 @@ $showProducts->bind_result($id, $name, $desc, $price, $img);
 
 
 <div class="flex-container">
-    <?php while($showProducts->fetch()): ?>
+    <?php while($showProducts->fetch()):
+        ?>
+
         <div><img src="/uploads/products/<?=$img?>" alt="product" height="422" width="339"><p><?=$name?><br>£<?=$price?><br></p></div>
         <form method="post">
             <input type="hidden" name="product_id" value="<?= $id ?>">
+            <input type="text" name="quantity" value ="1">
             <button type="submit" value="Add To Basket">Add To Basket</button>
         </form>
-    <?php endwhile;
+    <?php
+    endwhile;
     if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-        array_push($_SESSION['basket'], $_POST['product_id']);
+        array_push($_SESSION['basket'], [$_POST['product_id'], $_POST['quantity']]);
     }
     ?>
 </div>

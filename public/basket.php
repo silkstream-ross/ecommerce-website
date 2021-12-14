@@ -36,12 +36,14 @@ $showBasket = $mysqli->prepare("SELECT name, description, price, img FROM produc
     <tbody id="basket-body">
     <?php
     foreach($_SESSION['basket'] as $key => $product){
-        $showBasket->bind_param("i", $product);
+        $showBasket->bind_param("i", $_SESSION['basket'][$key][0]);
         $showBasket->execute();
         $showBasket->bind_result($name, $desc, $price, $img);
 
         $showBasket->fetch();
-        $showBasket->free_result(); ?>
+        $showBasket->free_result();
+
+        ?>
         <tr>
             <td><img src="/uploads/products/<?=$img?>" width="339" height="425" alt="game-art"></td>
             <td><?=$name?></td>
@@ -75,6 +77,7 @@ $showBasket = $mysqli->prepare("SELECT name, description, price, img FROM produc
         request.onreadystatechange = function(){
             if (request.readyState === XMLHttpRequest.DONE){
                 if(request.status === 200){
+                    alert("OK");
                     let row = btn.parentNode.parentNode;
                     row.parentNode.removeChild(row);
                 }else{

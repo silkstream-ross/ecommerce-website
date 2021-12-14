@@ -1,7 +1,14 @@
 <?php
-require "../app.php";
+require "app.php";
 $position = isset($_GET['position']) ? (int)$_GET['position'] : 0;
-unset($_SESSION['basket'][$position]);
+
+if(isset($_SESSION['basket'][$position])){
+    unset($_SESSION['basket'][$position]);
+    echo 'OK';
+} else {
+    echo 'FAIL';
+}
+
 
 
 
