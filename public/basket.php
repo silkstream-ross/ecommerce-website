@@ -1,7 +1,8 @@
 <?php
 require 'app.php';
 
-
+$subtotal = 0;
+$showBasket = $mysqli->prepare("SELECT name, description, price, img FROM products WHERE product_id=?");
 //$showBasket = $mysqli->prepare("SELECT name, description, price, img FROM products WHERE product_id=?");
 //$showBasket->bind_param("i", $_SESSION['id']);
 //$showBasket->execute();
@@ -29,30 +30,35 @@ require 'app.php';
             <th>Product</th>
             <th colspan="2"></th>
             <th>Price</th>
+            <th></th>
         </tr>
     </thead>
     <tbody id="basket-body">
     <?php
-    foreach($_SESSION['basket'] as $product){
-        var_dump($product);
-        $showBasket = $mysqli->prepare("SELECT name, description, price, img FROM products WHERE product_id=?");
-        $showBasket->bind_param("i", $product);
+    for( $pos = 0; $pos<count($_SESSION['basket']); $pos++){
+//    foreach($_SESSION['basket'] as $product){
+        $showBasket->bind_param("i", $_SESSION['basket'][$pos]);
         $showBasket->execute();
         $showBasket->bind_result($name, $desc, $price, $img);
 
-        $showBasket->fetch(); ?>
+        $showBasket->fetch();
+        $showBasket->free_result(); ?>
         <tr>
             <td><img src="/uploads/products/<?=$img?>" width="339" height="425" alt="game-art"></td>
             <td><?=$name?></td>
             <td><?=$desc?></td>
             <td>£<?=$price?></td>
+            <td><button onclick="removeFromBasket(this, <?= $pos ?>)">Remove</button></td>
         </tr>
-    <?php } ?>
+    <?php
+        $subtotal += $price;
+    } ?>
     </tbody>
     <tfoot>
     <tr>
         <td>Subtotal:</td>
         <td colspan="2"></td>
+        <td>£<?= $subtotal ?></td>
         <td></td>
     </tr>
     </tfoot>
@@ -64,21 +70,23 @@ require 'app.php';
     <p>Copyright© Star Platinum</p>
 </footer>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<script>
+    function removeFromBasket(btn, position) {
+        let request = new XMLHttpRequest();
+        request.onreadystatechange = function(){
+            if (request.readyState === XMLHttpRequest.DONE){
+                if(request.status === 200){
+                    let row = btn.parentNode.parentNode;
+                    row.parentNode.removeChild(row);
+                }else{
+                    alert("Something went wrong.");
+                }
+            }
+        };
+        request.open("GET", "ajax-remove-from-basket.php?position="+position, true);
+        request.send();
+    }
+</script>
 
 
 
