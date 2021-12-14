@@ -5,6 +5,11 @@ define('ABSOLUTE_DIR',__DIR__);
 //mysqli_report(MYSQLI_REPORT_ALL);
 $mysqli = new mysqli("ecommerce_website_database", "dev_database", "dev_database", "dev_database");
 
+if (!isset($_SESSION['basket'])) {
+    $_SESSION['basket'] = [];
+}
+
+
 function validateForm($data){
     $invalid_data = "";
     if($data === $invalid_data){

@@ -1,8 +1,7 @@
 <?php
 require 'app.php';
 
-$subtotal = 0;
-$showBasket = $mysqli->prepare("SELECT name, description, price, img FROM products WHERE product_id=?");
+
 //$showBasket = $mysqli->prepare("SELECT name, description, price, img FROM products WHERE product_id=?");
 //$showBasket->bind_param("i", $_SESSION['id']);
 //$showBasket->execute();
@@ -35,6 +34,8 @@ $showBasket = $mysqli->prepare("SELECT name, description, price, img FROM produc
     <tbody id="basket-body">
     <?php
     foreach($_SESSION['basket'] as $product){
+        var_dump($product);
+        $showBasket = $mysqli->prepare("SELECT name, description, price, img FROM products WHERE product_id=?");
         $showBasket->bind_param("i", $product);
         $showBasket->execute();
         $showBasket->bind_result($name, $desc, $price, $img);
@@ -46,15 +47,13 @@ $showBasket = $mysqli->prepare("SELECT name, description, price, img FROM produc
             <td><?=$desc?></td>
             <td>£<?=$price?></td>
         </tr>
-    <?php
-     $subtotal += $price;
-    } ?>
+    <?php } ?>
     </tbody>
     <tfoot>
     <tr>
         <td>Subtotal:</td>
         <td colspan="2"></td>
-        <td>£<?= $subtotal ?></td>
+        <td></td>
     </tr>
     </tfoot>
 </table>

@@ -1,7 +1,6 @@
 <?php
 require "app.php";
 
-$_SESSION['basket'];
 
 $showProducts = $mysqli->prepare("SELECT product_id, name, description, price, img FROM products");
 $showProducts->execute();
