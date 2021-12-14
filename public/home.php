@@ -58,20 +58,6 @@ $showProducts->bind_result($id, $name, $desc, $price, $img);
 <footer>
     <p>Copyright© Star Platinum</p>
 </footer>
-
-<script>
-    function AddToBasket(){
-        let xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function (){
-            if(this.readyState == 4 && this.status == 200){
-                document.getElementById("basket-body").innerHTML = this.responseText;
-            }
-        };
-        xhttp.open("GET", "ajax-add-to-basket.php", true);
-        xhttp.send();
-    };
-</script>
-
 <script src="js/jquery-3.6.0.min.js"></script>
 <script src="js/main.js"></script>
 </body>
