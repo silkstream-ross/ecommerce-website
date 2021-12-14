@@ -35,9 +35,8 @@ $showBasket = $mysqli->prepare("SELECT name, description, price, img FROM produc
     </thead>
     <tbody id="basket-body">
     <?php
-    for( $pos = 0; $pos<count($_SESSION['basket']); $pos++){
-//    foreach($_SESSION['basket'] as $product){
-        $showBasket->bind_param("i", $_SESSION['basket'][$pos]);
+    foreach($_SESSION['basket'] as $key => $product){
+        $showBasket->bind_param("i", $product);
         $showBasket->execute();
         $showBasket->bind_result($name, $desc, $price, $img);
 
@@ -48,7 +47,7 @@ $showBasket = $mysqli->prepare("SELECT name, description, price, img FROM produc
             <td><?=$name?></td>
             <td><?=$desc?></td>
             <td>£<?=$price?></td>
-            <td><button onclick="removeFromBasket(this, <?= $pos ?>)">Remove</button></td>
+            <td><button onclick="removeFromBasket(this, <?= $key ?>)">Remove</button></td>
         </tr>
     <?php
         $subtotal += $price;
