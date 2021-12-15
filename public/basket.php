@@ -29,6 +29,7 @@ $showBasket = $mysqli->prepare("SELECT name, description, price, img FROM produc
         <tr>
             <th>Product</th>
             <th colspan="2"></th>
+            <th>Quantity</th>
             <th>Price</th>
             <th></th>
         </tr>
@@ -42,13 +43,14 @@ $showBasket = $mysqli->prepare("SELECT name, description, price, img FROM produc
 
         $showBasket->fetch();
         $showBasket->free_result();
-
+        $quantity = $_SESSION['basket'][$key][1];
         ?>
         <tr>
             <td><img src="/uploads/products/<?=$img?>" width="339" height="425" alt="game-art"></td>
             <td><?=$name?></td>
             <td><?=$desc?></td>
-            <td>£<?=$price?></td>
+            <td><?=$quantity?></td>
+            <td>£<?=$price*=$quantity?></td>
             <td><button onclick="removeFromBasket(this, <?= $key ?>)">Remove</button></td>
         </tr>
     <?php
@@ -58,7 +60,7 @@ $showBasket = $mysqli->prepare("SELECT name, description, price, img FROM produc
     <tfoot>
     <tr>
         <td>Subtotal:</td>
-        <td colspan="2"></td>
+        <td colspan="3"></td>
         <td>£<?= $subtotal ?></td>
         <td></td>
     </tr>
@@ -77,7 +79,6 @@ $showBasket = $mysqli->prepare("SELECT name, description, price, img FROM produc
         request.onreadystatechange = function(){
             if (request.readyState === XMLHttpRequest.DONE){
                 if(request.status === 200){
-                    alert("OK");
                     let row = btn.parentNode.parentNode;
                     row.parentNode.removeChild(row);
                 }else{

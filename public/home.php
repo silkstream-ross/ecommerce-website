@@ -49,7 +49,9 @@ $showProducts->bind_result($id, $name, $desc, $price, $img);
     <?php
     endwhile;
     if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-        array_push($_SESSION['basket'], [$_POST['product_id'], $_POST['quantity']]);
+        if($_POST['quantity']>=1 && !in_array($_POST['product_id'], $_SESSION['basket'])){
+            array_push($_SESSION['basket'], [$_POST['product_id'], $_POST['quantity']]);
+        }
     }
     ?>
 </div>
