@@ -37,13 +37,13 @@ $showBasket = $mysqli->prepare("SELECT name, description, price, img FROM produc
     <tbody id="basket-body">
     <?php
     foreach($_SESSION['basket'] as $key => $product){
-        $showBasket->bind_param("i", $_SESSION['basket'][$key][0]);
+        $showBasket->bind_param("i", $_SESSION['basket'][$key]['id']);
         $showBasket->execute();
         $showBasket->bind_result($name, $desc, $price, $img);
 
         $showBasket->fetch();
         $showBasket->free_result();
-        $quantity = $_SESSION['basket'][$key][1];
+        $quantity = $_SESSION['basket'][$key]['quantity'];
         ?>
         <tr>
             <td><img src="/uploads/products/<?=$img?>" width="339" height="425" alt="game-art"></td>

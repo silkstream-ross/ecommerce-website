@@ -154,6 +154,20 @@ h1{
     font-size: 30px;
 }
 
+.product-info{
+    display: flex;
+    flex-direction: column;
+}
+
+input[type=text]{
+    width: 10%;
+    margin: auto;
+}
+
+form{
+    display: grid;
+}
+
 p{
     text-align: center;
     font-family: Arial;

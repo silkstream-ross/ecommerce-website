@@ -39,20 +39,20 @@ $showProducts->bind_result($id, $name, $desc, $price, $img);
 <div class="flex-container">
     <?php while($showProducts->fetch()):
         ?>
-
-        <div><img src="/uploads/products/<?=$img?>" alt="product" height="422" width="339"><p><?=$name?><br>£<?=$price?><br></p></div>
-        <form method="post">
+        <div class="product-info"><img src="/uploads/products/<?=$img?>" alt="product" height="422" width="339"><p><?=$name?><br>£<?=$price?><br></p>
+        <form method="post" e="return false">
             <input type="hidden" name="product_id" value="<?= $id ?>">
-            <input type="text" name="quantity" value ="1">
-            <button type="submit" value="Add To Basket">Add To Basket</button>
+            <input type="text" name="quantity" value ="1" class="quantity-field">
+            <button type="submit" value="Add To Basket" onclick="ConfirmBasket(this)" class="add-to-basket">Add To Basket</button>
         </form>
+        <div id="product-message"></div>
+        </div>
     <?php
     endwhile;
-
     if ($_SERVER['REQUEST_METHOD'] == 'POST'){
         if($_POST['quantity']>=1){
-            if(!in_array($_POST['product_id'], array_column($_SESSION['basket'], '0'))){
-                array_push($_SESSION['basket'], [$_POST['product_id'], $_POST['quantity']]);
+            if(!in_array($_POST['product_id'], array_column($_SESSION['basket'], 'id'))){
+                array_push($_SESSION['basket'], ['id' => $_POST['product_id'], 'quantity' => $_POST['quantity']]);
             }
         }
     }
@@ -65,6 +65,30 @@ $showProducts->bind_result($id, $name, $desc, $price, $img);
 <footer>
     <p>Copyright© Star Platinum</p>
 </footer>
+
+<script>
+
+
+     let add_to_basket_btns = document.getElementsByClassName("add-to-basket");
+     for (let i = 0; i < add_to_basket_btns.length; i++) {
+         add_to_basket_btns[i].addEventListener("click", function (event) {
+             event.preventDefault();
+
+         });
+     }
+
+    function ConfirmBasket(element){
+        let request = new XMLHttpRequest();
+        request.onreadystatechange = function() {
+            if(request.status === 200){
+                element.innerHTML = this.responseText;
+            }
+        }
+        request.open("GET", "ajax-confirm-basket-message.php", true);
+        request.send();
+    }
+
+</script>
 <script src="js/jquery-3.6.0.min.js"></script>
 <script src="js/main.js"></script>
 </body>
