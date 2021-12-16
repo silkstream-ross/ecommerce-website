@@ -40,22 +40,22 @@ $showProducts->bind_result($id, $name, $desc, $price, $img);
     <?php while($showProducts->fetch()):
         ?>
         <div class="product-info"><img src="/uploads/products/<?=$img?>" alt="product" height="422" width="339"><p><?=$name?><br>£<?=$price?><br></p>
-        <form method="post" e="return false">
+        <form method="post" id="add-to-basket">
             <input type="hidden" name="product_id" value="<?= $id ?>">
             <input type="text" name="quantity" value ="1" class="quantity-field">
-            <button type="submit" value="Add To Basket" onclick="ConfirmBasket(this)" class="add-to-basket">Add To Basket</button>
+            <button type="submit" value="Add To Basket"  class="add-to-basket">Add To Basket</button>
         </form>
         <div id="product-message"></div>
         </div>
     <?php
     endwhile;
-    if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-        if($_POST['quantity']>=1){
-            if(!in_array($_POST['product_id'], array_column($_SESSION['basket'], 'id'))){
-                array_push($_SESSION['basket'], ['id' => $_POST['product_id'], 'quantity' => $_POST['quantity']]);
-            }
-        }
-    }
+//    if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+////        if($_POST['quantity']>=1){
+////            if(!in_array($_POST['product_id'], array_column($_SESSION['basket'], 'id'))){
+////                array_push($_SESSION['basket'], ['id' => $_POST['product_id'], 'quantity' => $_POST['quantity']]);
+////            }
+////        }
+//    }
     ?>
 </div>
 </div>
@@ -73,19 +73,24 @@ $showProducts->bind_result($id, $name, $desc, $price, $img);
      for (let i = 0; i < add_to_basket_btns.length; i++) {
          add_to_basket_btns[i].addEventListener("click", function (event) {
              event.preventDefault();
-
+             ConfirmBasket(this);
          });
      }
 
     function ConfirmBasket(element){
+        let formData = new FormData(element.form);
         let request = new XMLHttpRequest();
         request.onreadystatechange = function() {
             if(request.status === 200){
                 element.innerHTML = this.responseText;
             }
         }
-        request.open("GET", "ajax-confirm-basket-message.php", true);
-        request.send();
+        request.open("POST", "ajax-confirm-basket-message.php", true);
+        // request.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
+        request.send(formData);
+        for (var pair of formData.entries()) {
+            console.log(pair[0]+ ', ' + pair[1]);
+        }
     }
 
 </script>
