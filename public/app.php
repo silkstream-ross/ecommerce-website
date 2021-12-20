@@ -2,14 +2,14 @@
 session_start();
 error_reporting(E_ALL);
 define('ABSOLUTE_DIR',__DIR__);
-mysqli_report(MYSQLI_REPORT_ALL);
+mysqli_report(MYSQLI_REPORT_ERROR);
 //$mysqli = new mysqli("ecommerce_website_database", "dev_database", "dev_database", "dev_database");
 
 require 'classes/DatabaseConnection.php';
 
-Silkstream\EreborClay\Core\DatabaseConnection::pushConnection('ecommerce_website_database', 'dev_database', "dev_database", "dev_database", "default");
+Silkstream\EreborClay\Core\DatabaseConnection::pushConnection('ecommerce_website_database', 'dev_database', "dev_database", "dev_database", "dev_database");
 
-$db = new Silkstream\EreborClay\Core\DatabaseConnection('default');
+$db = new Silkstream\EreborClay\Core\DatabaseConnection('dev_database');
 
 if (!isset($_SESSION['basket'])) {
     $_SESSION['basket'] = [];

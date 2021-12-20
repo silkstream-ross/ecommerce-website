@@ -1,14 +1,15 @@
 <?php
 require "../app.php";
 require "session.php";
-include "header.php";
 
 
 
-$showUsers = $mysqli->prepare("SELECT * FROM users");
-$showUsers->execute();
-$showUsers->bind_result($id, $username, $email, $firstName, $lastName, $password);
-$deleteRow = $mysqli->prepare("DELETE FROM users WHERE id=?");
+$showQuery = "SELECT * FROM users";
+$showUsers = $db->prepare($showQuery);
+$Users = $db->all($showUsers);
+
+
+//$deleteRow = $mysqli->prepare("DELETE FROM users WHERE id=?");
 
 
 
@@ -23,6 +24,7 @@ $deleteRow = $mysqli->prepare("DELETE FROM users WHERE id=?");
 </head>
 
 <body>
+<?= include "header.php"; ?>
 <div class="container">
     <h1>Users</h1>
 <h2>All users</h2>
@@ -39,17 +41,17 @@ $deleteRow = $mysqli->prepare("DELETE FROM users WHERE id=?");
     </tr>
     </thead>
     <tbody>
-    <?php while($showUsers->fetch()): ?>
+    <?php foreach($Users as $user){ ?>
         <tr>
-            <td><?=$id?></td>
-            <td><?=$username?></td>
-            <td><?=$email?></td>
-            <td><?=htmlentities($firstName)?></td>
-            <td><?=$lastName?></td>
-            <td class="editButton"><a href="edit-user.php?id=<?=$id?>">Edit</a></td>
-            <td class="deleteButton"><input type="button" value="Delete" onclick="deleteRow(this,<?=$id?>)" /></td>
+            <td><?=$user['users_id']?></td>
+            <td><?=$user['username']?></td>
+            <td><?=$user['email']?></td>
+            <td><?=htmlentities($user['first_name'])?></td>
+            <td><?=$user['last_name']?></td>
+            <td class="editButton"><a href="edit-user.php?id=<?=$user['users_id']?>">Edit</a></td>
+            <td class="deleteButton"><input type="button" value="Delete" onclick="deleteRow(this,<?=$user['users_id']?>)" /></td>
         </tr>
-    <?php endwhile; ?>
+    <?php } ?>
         <tr>
             <td colspan="7" class="addButton"><a href="/admin/add-user.php">+ Add User</a></td>
         </tr>

@@ -2,11 +2,10 @@
 
 require "../app.php";
 require "session.php";
-include "header.php";
 
 
-$addProduct = $mysqli->prepare("INSERT INTO products(category_id, name, description, sku, price) VALUES (?, ?, ?, ?, ?)");
-$addProduct->bind_param("issss", $category, $name, $description, $sku, $price);
+$addQuery = "INSERT INTO products(category_id, name, description, sku, price) VALUES (?, ?, ?, ?, ?)";
+
 
 $error = "";
 
@@ -23,7 +22,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $description = $_POST["description"];
         $sku = $_POST["sku"];
         $price = $_POST["price"];
-        $addProduct->execute();
+        $addProduct = $db->prepare($addQuery,[$category, $name, $description, $sku, $price]);
+        $db->setHandle($addProduct);
         $error = "";
     } else {
         $error = "*Error - Invalid data";
@@ -40,6 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <title>Add product</title>
 </head>
 <body>
+<?= include "header.php"; ?>
 <div class="container">
     <h1>Add Product</h1>
 

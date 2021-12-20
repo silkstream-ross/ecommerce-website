@@ -1,14 +1,14 @@
 <?php
 require "../app.php";
 require "session.php";
-include "header.php";
 
 
 
-$showProducts = $mysqli->prepare("SELECT * FROM products");
-$showProducts->execute();
-$showProducts->bind_result($id, $category, $name, $description, $sku, $price, $img);
-$deleteRow = $mysqli->prepare("DELETE FROM products WHERE id=?");
+
+$showQuery = "SELECT * FROM products";
+$showProducts = $db->prepare($showQuery);
+$products = $db->all($showProducts);
+//$deleteRow = $mysqli->prepare("DELETE FROM products WHERE id=?");
 
 
 
@@ -23,6 +23,9 @@ $deleteRow = $mysqli->prepare("DELETE FROM products WHERE id=?");
 </head>
 
 <body>
+
+<?=include "header.php"; ?>
+
 <div class="container">
     <h1>Products</h1>
 <h2>All Products</h2>
@@ -40,18 +43,18 @@ $deleteRow = $mysqli->prepare("DELETE FROM products WHERE id=?");
     </tr>
     </thead>
     <tbody>
-    <?php while($showProducts->fetch()): ?>
+    <?php foreach($products as $product){ ?>
         <tr>
-            <td><?=$id?></td>
-            <td><?=htmlentities($category)?></td>
-            <td><?=htmlentities($name)?></td>
-            <td><?=htmlentities($description)?></td>
-            <td><?=htmlentities($sku)?></td>
-            <td><?=htmlentities($price)?></td>
-            <td class="editButton"><a href="edit-product.php?id=<?=$id?>">Edit</a></td>
-            <td class="deleteButton"><input type="button" value="Delete" onclick="deleteRow(this,<?=$id?>)" /></td>
+            <td><?=$product['product_id']?></td>
+            <td><?=htmlentities($product['category_id'])?></td>
+            <td><?=htmlentities($product['name'])?></td>
+            <td><?=htmlentities($product['description'])?></td>
+            <td><?=htmlentities($product['sku'])?></td>
+            <td><?=htmlentities($product['price'])?></td>
+            <td class="editButton"><a href="edit-product.php?id=<?=$product['product_id']?>">Edit</a></td>
+            <td class="deleteButton"><input type="button" value="Delete" onclick="deleteRow(this,<?=$product['product_id']?>)" /></td>
         </tr>
-    <?php endwhile; ?>
+    <?php } ?>
         <tr>
             <td colspan="8" class="addButton"><a href="/admin/add-product.php">+ Add Product</a></td>
         </tr>

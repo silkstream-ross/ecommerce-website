@@ -2,7 +2,8 @@
 require 'app.php';
 
 $subtotal = 0;
-$showBasket = $db->prepare("SELECT name, description, price, img FROM products WHERE product_id=?");
+$query = "SELECT name, description, price, img FROM products WHERE product_id=?";
+
 //$showBasket = $mysqli->prepare("SELECT name, description, price, img FROM products WHERE product_id=?");
 //$showBasket->bind_param("i", $_SESSION['id']);
 //$showBasket->execute();
@@ -37,24 +38,26 @@ $showBasket = $db->prepare("SELECT name, description, price, img FROM products W
     <tbody id="basket-body">
     <?php
     foreach($_SESSION['basket'] as $key => $product){
-        $showBasket->bind_param("i", $_SESSION['basket'][$key]['id']);
-        $showBasket->execute();
-        $showBasket->bind_result($name, $desc, $price, $img);
-
-        $showBasket->fetch();
-        $showBasket->free_result();
+        $showBasket = $db->prepare($query,[$_SESSION['basket'][$key]['id']]);
+//        $showBasket->bind_param("i", $_SESSION['basket'][$key]['id']);
+//        $showBasket->execute();
+//        $showBasket->bind_result($name, $desc, $price, $img);
+//
+//        $showBasket->fetch();
+//        $showBasket->free_result();
+        $basketItem = $db->one($showBasket);
         $quantity = $_SESSION['basket'][$key]['quantity'];
         ?>
         <tr>
-            <td><img src="/uploads/products/<?=$img?>" width="339" height="425" alt="game-art"></td>
-            <td><?=$name?></td>
-            <td><?=$desc?></td>
+            <td><img src="/uploads/products/<?=$basketItem['img']?>" width="339" height="425" alt="game-art"></td>
+            <td><?=$basketItem['name']?></td>
+            <td><?=$basketItem['description']?></td>
             <td><?=$quantity?></td>
-            <td>£<?=$price*=$quantity?></td>
+            <td>£<?=$basketItem['price']*=$quantity?></td>
             <td><button onclick="removeFromBasket(this, <?= $key ?>)">Remove</button></td>
         </tr>
     <?php
-        $subtotal += $price;
+        $subtotal += $basketItem['price'];
     } ?>
     </tbody>
     <tfoot>

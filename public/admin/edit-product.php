@@ -6,12 +6,12 @@ include "header.php";
 
 $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 
-$select = $mysqli->prepare("SELECT * FROM products WHERE product_id=?");
-$select->bind_param("i", $id);
-$select->execute();
-$select->bind_result($id, $category, $name, $description, $sku, $price, $img);
-$select->fetch();
-$select->free_result();
+$selectQuery = "SELECT * FROM products WHERE product_id=?";
+$select = $db->prepare($selectQuery, [$id]);
+$product = $db->one($select);
+
+
+$updateQuery = "UPDATE products SET category_id = ?, name = ?, description = ?, sku = ?, price = ?, img = ? WHERE product_id=?";
 $error = "";
 
 
@@ -22,8 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $test4 = validateForm($_POST["sku"]);
     $test5 = validateForm($_POST["price"]);
     if ($test1 && $test2 && $test3 && $test4 && $test5) {
-        $update = $mysqli->prepare("UPDATE products SET category_id = ?, name = ?, description = ?, sku = ?, price = ?, img = ? WHERE product_id=?");
-        $update->bind_param("isssssi", $newCategory, $newName, $newDesc, $newSKU, $newPrice, $newImg, $id);
+        $img = $product['img'];
         if(isset($_FILES['image'])){;
             $fileName = $_FILES['image']['name'];
             $tmp_name = $_FILES['image']['tmp_name'];
@@ -44,13 +43,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $newDesc = $_POST["description"];
         $newSKU = $_POST["sku"];
         $newPrice = $_POST["price"];
-        $update->execute();
+        $update = $db->prepare($updateQuery,[$newCategory, $newName, $newDesc, $newSKU, $newPrice, $newImg, $id]);
+        $db->setHandle($update);
         $error = "";
     } else {
         $error = "*Error - Invalid data";
     }
 }
-
 
 
 
@@ -64,29 +63,29 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 </head>
 <body>
 <div class="container">
-    <h1>Edit product : <?= $name ?></h1>
+    <h1>Edit product : <?= $product['name'] ?></h1>
 
     <form method="post" enctype="multipart/form-data">
         <p>Category Number :</p>
-        <input type="text" name="category" value="<?= $category ?>">
+        <input type="text" name="category" value="<?= $product['category_id'] ?>">
         <br>
         <p>Name:</p>
-        <input type="text" name="name" value="<?= $name ?>">
+        <input type="text" name="name" value="<?= $product['name'] ?>">
         <br>
         <p>Description:</p>
-        <input type="text" name="description" value="<?= $description ?>">
+        <input type="text" name="description" value="<?= $product['description'] ?>">
         <br>
         <p>SKU:</p>
-        <input type="text" name="sku" value="<?= $sku ?>">
+        <input type="text" name="sku" value="<?= $product['sku'] ?>">
         <br>
         <p>Price:</p>
-        <input type="text" name="price" value="<?= $price ?>">
+        <input type="text" name="price" value="<?= $product['price'] ?>">
         <br>
         <br>
         <input type="file" name="image">
         <br>
         <br>
-        <img src="/uploads/products/<?=$img?>"
+        <img src="/uploads/products/<?=$product['img']?>"
         <br>
         <br>
         <input type="submit" value="submit">

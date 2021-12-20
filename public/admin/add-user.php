@@ -1,11 +1,12 @@
 <?php
 require "../app.php";
 require "session.php";
-include "header.php";
 
 
-$addUser = $mysqli->prepare("INSERT INTO users(username, email, first_name, last_name, password) VALUES (?, ?, ?, ?, ?)");
-$addUser->bind_param("sssss", $username, $email, $firstName, $lastName, $password);
+$addQuery = "INSERT INTO users(username, email, first_name, last_name, password) VALUES (?, ?, ?, ?, ?)";
+//$addUser->bind_param("sssss", $username, $email, $firstName, $lastName, $password);
+
+
 
 $error = "";
 
@@ -22,15 +23,13 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
         $firstName = $_POST["firstname"];
         $lastName = $_POST["lastname"];
         $password = $_POST["password"];
-        $addUser->execute();
+        $addUser = $db->prepare($addQuery, [$username, $email, $firstName, $lastName, $password]);
+        $db->SetHandle($addUser);
         $error = "";
     }else{
-      $error = "*Error - Invalid data";
+        $error = "*Error - Invalid data";
     }
 }
-
-
-
 
 
 ?>
@@ -42,6 +41,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
     <title>Add user</title>
 </head>
 <body>
+<?= include "header.php"; ?>
 <div class="container">
 <h1>Add User</h1>
 
@@ -68,18 +68,6 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
 </form>
 </div>
 
-
-
-
-
-
-
-
 </body>
-
-
-
-
-
 
 </html>
