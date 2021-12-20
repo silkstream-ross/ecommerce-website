@@ -1,10 +1,13 @@
 <?php
 require "app.php";
 
+$query = "SELECT product_id, name, description, price, img FROM `products`;";
+$ShowProducts = $db->prepare($query);
+$products = $db->all($ShowProducts);
 
-$showProducts = $mysqli->prepare("SELECT product_id, name, description, price, img FROM products");
-$showProducts->execute();
-$showProducts->bind_result($id, $name, $desc, $price, $img);
+//$showProducts = $db->prepare("SELECT product_id, name, description, price, img FROM products", "$id, $name, $desc, $price, $img");
+//$showProducts->execute();
+////$showProducts->bind_result($id, $name, $desc, $price, $img);
 
 
 ?>
@@ -37,18 +40,18 @@ $showProducts->bind_result($id, $name, $desc, $price, $img);
 
 
 <div class="flex-container">
-    <?php while($showProducts->fetch()):
+    <?php foreach($products as $product){
         ?>
-        <div class="product-info"><img src="/uploads/products/<?=$img?>" alt="product" height="422" width="339"><p><?=$name?><br>£<?=$price?><br></p>
+        <div class="product-info"><img src="/uploads/products/<?=$product['img']?>" alt="product" height="422" width="339"><p><?=$product['name']?><br>£<?=$product['price']?><br></p>
         <form method="post" id="add-to-basket">
-            <input type="hidden" name="product_id" value="<?= $id ?>">
+            <input type="hidden" name="product_id" value="<?= $product['product_id'] ?>">
             <input type="text" name="quantity" value ="1" class="quantity-field">
             <button type="submit" value="Add To Basket"  class="add-to-basket">Add To Basket</button>
         </form>
         <div id="product-message"></div>
         </div>
     <?php
-    endwhile;
+    }
 //    if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 ////        if($_POST['quantity']>=1){
 ////            if(!in_array($_POST['product_id'], array_column($_SESSION['basket'], 'id'))){

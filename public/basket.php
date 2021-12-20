@@ -2,12 +2,12 @@
 require 'app.php';
 
 $subtotal = 0;
-$showBasket = $mysqli->prepare("SELECT name, description, price, img FROM products WHERE product_id=?");
+$showBasket = $db->prepare("SELECT name, description, price, img FROM products WHERE product_id=?");
 //$showBasket = $mysqli->prepare("SELECT name, description, price, img FROM products WHERE product_id=?");
 //$showBasket->bind_param("i", $_SESSION['id']);
 //$showBasket->execute();
 //$showBasket->bind_result($name, $desc, $price, $img);
-//
+
 
 //$getPrices = $mysqli->prepare("SELECT price FROM products WHERE price=?");
 //$getPrices->bind_param();
