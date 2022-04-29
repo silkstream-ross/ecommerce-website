@@ -1,0 +1,9 @@
+header, .banner_arrows, form, footer{
+    display: none;
+}
+
+body{
+    background-color: white;
+    color: black;
+    font-size: 12pt;
+}

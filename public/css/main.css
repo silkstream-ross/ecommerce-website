@@ -199,3 +199,46 @@ footer{
     margin-bottom: -8px;
 }
 
+.print{
+    display: none;
+}
+
+.about-text{
+    text-align: center;
+    font-size: 1.75em;
+}
+
+@media print{
+    header, .banner_arrows, form, footer{
+        display: none;
+    }
+
+    body{
+        background-color: white;
+        color: black;
+        font-size: 12pt;
+    }
+
+    .about-text{
+       font-size: 1.75em;
+    }
+
+    .flex-container{
+        break-after: auto;
+        break-inside: avoid;
+    }
+
+    img{
+        filter: grayscale(100%);
+    }
+
+    .print{
+        display: block;
+        text-align: center;
+    }
+
+    .Star_image{
+        filter: invert(100%) hue-rotate(180deg) brightness(120%) contrast(150%);
+        padding: 1em;
+    }
+}

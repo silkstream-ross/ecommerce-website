@@ -26,6 +26,7 @@ $products = $db->all($ShowProducts);
 
 <?php include "includes/header.php"?>
 
+<div class="Star_image print"> <img src="images/Logo.svg" alt="Star"></div>
 <div class="container">
 <div class="banner" style="position:relative;">
     <img src="images/banner1.png" alt="Banner" class="slide visible">
@@ -61,7 +62,17 @@ $products = $db->all($ShowProducts);
 //    }
     ?>
 </div>
+
+    <div class="about-text">
+        <h1>About Us</h1>
+
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sagittis vitae et leo duis ut diam quam. Feugiat sed lectus vestibulum mattis ullamcorper velit. Sit amet nisl suscipit adipiscing bibendum est ultricies integer. Eget aliquet nibh praesent tristique magna. Adipiscing bibendum est ultricies integer quis auctor elit sed vulputate. Volutpat odio facilisis mauris sit amet massa vitae. Amet volutpat consequat mauris nunc congue. Maecenas volutpat blandit aliquam etiam erat velit scelerisque in dictum. Orci sagittis eu volutpat odio facilisis. Laoreet suspendisse interdum consectetur libero.
+
+        A condimentum vitae sapien pellentesque habitant. Cursus sit amet dictum sit amet justo donec enim. Amet venenatis urna cursus eget. Quis hendrerit dolor magna eget est lorem ipsum dolor sit. Purus ut faucibus pulvinar elementum integer enim neque volutpat ac. Risus nec feugiat in fermentum posuere urna. Sodales ut eu sem integer vitae justo eget magna fermentum. Cursus mattis molestie a iaculis at erat pellentesque. Aliquam nulla facilisi cras fermentum odio eu feugiat pretium nibh.  </p></div>
+
 </div>
+
+<p class="print">Note: this is a printed page and may not reflect the current state of the website.</p>
 
 
 <div id="content-block"></div>
